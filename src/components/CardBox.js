@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Card from "./Card";
 export default function CardBox({ cardsEasyType, totalTime, totalFlip }) {
   const [cards, setCards] = useState([]);
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(10);
   const [match, setMatch] = useState(0);
   const [flip, setFlip] = useState(0);
   const [disable, setDisabled] = useState(false);
@@ -33,13 +33,18 @@ export default function CardBox({ cardsEasyType, totalTime, totalFlip }) {
   }, [firstSelect, secondSelect]);
   // console.log(cards);
   const checkWin = () => {
-    // const sucessCheckCards = cards.filter((ele) => ele.matched === true);
-    if (match.length === cards.length) {
-      alert("You win");
-    } else if (time > totalTime || flip >= totalFlip - 1) {
-      alert("you lose the game");
-    }
-    console.log("----", time, flip);
+    setTimeout(()=>{
+      // const sucessCheckCards = cards.filter((ele) => ele.matched === true);
+      if (match.length === cards.length) {
+        alert("You win");
+      } else if (time >= totalTime || flip >= totalFlip) {
+        alert("you lose the game");
+      } else if (match.length < cards.length){
+        alert("you lose the game")
+      }
+      console.log("----", time, flip);
+    },200)
+    
   };
   const handleSelect = (card) => {
     if (flip < totalFlip) {
@@ -84,8 +89,11 @@ export default function CardBox({ cardsEasyType, totalTime, totalFlip }) {
 
   const clearTime = () => {
     setTimeout(() => {
-      checkWin();
+      setTime(10);
       clearInterval(timeDuration);
+      setTimeout(()=>{
+        checkWin();
+      },200)
     }, 10 * 1000);
   };
 
