@@ -1,11 +1,22 @@
 .card {
   position: relative;
 }
-.card .front {
+.card .front-Easy {
   transform: rotateY(90deg);
+  transition: all ease-in 0.3s;
   position: absolute;
 }
 
-.flipped .front {
+.flipped .front-Easy {
   transform: rotateY(0deg);
+  transition-delay: 00.3s;
+}
+
+.card .back-Easy {
+  transition: all ease-in 0.3s;
+  transition-delay: 00.3s;
+}
+.flipped .back-Easy {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
 }
