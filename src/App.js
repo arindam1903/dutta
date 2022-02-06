@@ -38,7 +38,7 @@ const cardsHardType = [
 
 function App() {
   let totalFlip = 4;
-  let totalTime = 40000;
+  let totalTime = 10;
   return (
     <>
       <CardBox

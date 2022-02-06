@@ -64,26 +64,31 @@ export default function CardBox({ cardsEasyType, totalTime, totalFlip }) {
     setCards(cardsEasyIcons);
     setFlip(0);
     setTime(0);
+    handleTime();
+    clearTime();
   };
 
-  useEffect(() => {
-    suffle();
-  }, []);
-  // useEffect(() => {
-  //   handleTime();
-  // }, []);
-  // let timeDuration;
-  // const handleTime = () => {
-  //   timeDuration = setInterval(() => {
-  //     setTime((prevTime) => prevTime + 1);
-  //   }, 1000);
-  //   clearTime();
-  // };
-  // const clearTime = () => {
-  //   clearTimeout(() => {
-  //     clearInterval(timeDuration);
-  //   }, 4 * 1000);
-  // };
+  //   useEffect(() => {
+  //     suffle();
+  //   }, []);
+
+  useEffect(() => {}, []);
+
+  let timeDuration;
+
+  const handleTime = () => {
+    timeDuration = setInterval(() => {
+      setTime((prevTime) => prevTime + 1);
+    }, 1000);
+  };
+
+  const clearTime = () => {
+    setTimeout(() => {
+      checkWin();
+      clearInterval(timeDuration);
+    }, 10 * 1000);
+  };
+
   const reSchdule = () => {
     setTimeout(() => {
       setFirstSelect(null);
@@ -94,9 +99,9 @@ export default function CardBox({ cardsEasyType, totalTime, totalFlip }) {
   return (
     <div className="App">
       <h1>Memory Game</h1>
-      {/* <button onClick={suffle}>New Game</button>
+      <button onClick={suffle}>New Game</button>
       <h2>Number of Flip :{flip}</h2>
-      <h2>Time Duration :{time}</h2> */}
+      <h2>Time Duration :{time}</h2>
       <div className="card-grid-Easy">
         {cards.map((card) => (
           <Card
