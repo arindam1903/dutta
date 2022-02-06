@@ -15,8 +15,8 @@ const cardsEasyType = [
 function App() {
   const [cards, setCards] = useState([]);
   const [flip, setFlip] = useState(0);
-  const [firstSelect, setFirstSelect] = useState();
-  const [secondSelect, setSecondSelect] = useState();
+  const [firstSelect, setFirstSelect] = useState(null);
+  const [secondSelect, setSecondSelect] = useState(null);
   useEffect(() => {
     if (firstSelect && secondSelect) {
       if (firstSelect.id === secondSelect.id) {
@@ -30,7 +30,7 @@ function App() {
             }
           });
         });
-        reSchdule();
+        //reSchdule();
       } else {
         reSchdule();
       }
@@ -55,8 +55,10 @@ function App() {
   };
 
   const reSchdule = () => {
-    setFirstSelect(null);
-    setSecondSelect(null);
+    setTimeout(()=>{
+      setFirstSelect();
+      setSecondSelect();
+    },500)
   };
   return (
     <div className="App">
@@ -68,12 +70,11 @@ function App() {
             key={card.uniqueId}
             card={card}
             handleSelect={handleSelect}
-            flipped={
-              firstSelect
-                ? card.id === firstSelect.id
-                : "" || secondSelect
-                ? card.id === secondSelect.id
-                : "" || card.matched
+            flipped={ !!card.matched && card.matched ? true
+                      : !(!!secondSelect) && !!firstSelect && card.uniqueId === firstSelect.uniqueId ? true 
+                      : !!secondSelect && !!firstSelect && card.uniqueId === firstSelect.uniqueId ? true 
+                      : !!secondSelect && !!firstSelect && card.uniqueId === secondSelect.uniqueId ? true 
+                      : false
             }
           />
         ))}
