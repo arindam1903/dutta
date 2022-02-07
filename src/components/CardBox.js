@@ -67,6 +67,9 @@ export default function CardBox({
     console.log(match, cardsize, win);
     if (match === cardsize * 2) {
       setWin(true);
+      setTimeout(()=>{
+        level === 'Easy' ? window.location.href='/medium' : window.location.href='/hard'
+      },3000)
       console.log(match, cardsize * 2, win);
     }
   }, [setSecondSelect, firstSelect]);
@@ -107,6 +110,9 @@ export default function CardBox({
     if (win === true) {
       //   alert("won");
       setWin(true);
+      setTimeout(()=>{
+        level === 'Easy' ? window.location.href='/medium' : window.location.href='/hard'
+      },3000)
       clearwintintervalfunc();
     } else if ((!win && flip === totalFlip) || (!win && time === totalTime)) {
       console.log(win, flip, time, totalTime, totalFlip);
@@ -162,7 +168,7 @@ export default function CardBox({
               : "card-grid-Hard"
           }
         >
-          {cards.map((card) => (
+          {win !== true ? cards.map(card => 
             <Card
               key={card.uniqueId}
               card={card}
@@ -186,7 +192,7 @@ export default function CardBox({
                   : false
               }
             />
-          ))}
+          ) : <h1>You won the game. Redirecting to next stage...</h1>}
         </div>
       ) : win ? (
         <h1>win</h1>
