@@ -27,7 +27,7 @@ export default function CardBox({
         setCards((prevCards) => {
           return prevCards.map((card) => {
             if (card.id === firstSelect.id) {
-              setMatch((pre) => pre + 1);
+              setMatch((pre) => pre + 2);
               checkWin();
               return { ...card, matched: true };
             } else {
@@ -65,11 +65,11 @@ export default function CardBox({
 
   useEffect(() => {
     console.log(match, cardsize, win);
-    if (match === cardsize) {
+    if (match === cardsize * 2) {
       setWin(true);
-      console.log(match, cardsize, win);
+      console.log(match, cardsize * 2, win);
     }
-  }, [setSecondSelect]);
+  }, [setSecondSelect, firstSelect]);
   const handleSelect = (card) => {
     if (flip < totalFlip) {
       if (firstSelect) {
@@ -105,12 +105,13 @@ export default function CardBox({
   };
   const clearwintinterval = setInterval(() => {
     if (win === true) {
-      alert("won");
+      //   alert("won");
+      setWin(true);
       clearwintintervalfunc();
     } else if ((!win && flip === totalFlip) || (!win && time === totalTime)) {
       console.log(win, flip, time, totalTime, totalFlip);
       setDisabled(true);
-      alert(`loose1 ${disable} ${time} ${flip}`);
+      //   alert(`loose1 ${disable} ${time} ${flip}`);
 
       clearwintintervalfunc();
     }
@@ -187,8 +188,10 @@ export default function CardBox({
             />
           ))}
         </div>
+      ) : win ? (
+        <h1>win</h1>
       ) : (
-        <h1>game over</h1>
+        <h1>Oops,game over!</h1>
       )}
     </div>
   );
