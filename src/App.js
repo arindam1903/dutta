@@ -1,6 +1,7 @@
 import "./App.css";
 import CardBox from "./components/CardBox";
-
+import Homepage from "./components/Homepage";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 const cardsEasyType = [
   { icon: "⌬", id: 1, matched: false },
   { icon: "⍟", id: 2, matched: false },
@@ -37,16 +38,57 @@ const cardsHardType = [
 ];
 
 function App() {
-  let totalFlip = 4;
-  let totalTime = 10;
   return (
-    <>
-      <CardBox
-        cardsEasyType={cardsHardType}
-        totalFlip={totalFlip}
-        totalTime={totalTime}
-      />
-    </>
+    <diV>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Homepage />} />
+        </Routes>
+        <Routes>
+          <Route
+            path="/easy"
+            element={
+              <CardBox
+                cardsEasyType={cardsEasyType}
+                totalFlip={40}
+                totalTime={40}
+                level={"Easy"}
+                cardsize={8}
+              />
+            }
+          />
+        </Routes>
+        <Routes>
+          <Route
+            path="/hard"
+            element={
+              <CardBox
+                cardsEasyType={cardsHardType}
+                totalFlip={80}
+                totalTime={80}
+                level={"Hard"}
+                cardsize={32}
+              />
+            }
+          />
+        </Routes>
+        <Routes>
+          <Route
+            path="/medium"
+            element={
+              <CardBox
+                cardsEasyType={cardsMediumType}
+                totalFlip={60}
+                totalTime={60}
+                level={"Medium"}
+                cardsize={16}
+              />
+            }
+          />
+        </Routes>
+        {/* </Switch> */}
+      </Router>
+    </diV>
   );
 }
 

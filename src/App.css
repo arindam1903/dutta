@@ -1,14 +1,19 @@
-.card-grid-Easy {
+.card-grid-Hard {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 4px;
 }
-/* .card-grid-Easy {
+.card-grid-Easy {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 4px;
-} */
-.front-Easy {
+}
+.card-grid-Medium {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 4px;
+}
+.front-Hard {
   font-size: 70px;
   background-color: #c0392b;
   color: white;
@@ -18,7 +23,7 @@
   width: 12vw;
   height: 19vh;
 }
-/* .front-Easy {
+.front-Easy {
   font-size: 70px;
   background-color: #c0392b;
   color: white;
@@ -27,7 +32,7 @@
   align-items: center;
   width: 24vw;
   height: 40vh;
-} */
+}
 .front-Medium {
   font-size: 70px;
   background-color: #c0392b;
@@ -43,16 +48,16 @@
   width: 24vw;
   height: 20vh;
 }
-.back-Easy {
+.back-Hard {
   background: #16a085;
   width: 12vw;
   height: 19vh;
 }
-/* .back-Easy {
+.back-Easy {
   background: #16a085;
   width: 24vw;
   height: 40vh;
-} */
+}
 
 .App {
   margin: 10px;
